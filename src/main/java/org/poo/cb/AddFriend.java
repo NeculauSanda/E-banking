@@ -13,7 +13,7 @@ public class AddFriend implements Comanda {
              PrintWriter out = new PrintWriter(bw)) { // eliminat
 
             out.println("\n user  " + intrari[2] + " " + intrari[3]);  // eliminat
-            Friend prieten = new Friend();
+            ActionUser prieten = new ActionUser();
             try {
                 User userPrincipal = prieten.returnareUser(eBanking, intrari[2]);
                 User userSec = prieten.returnareUser(eBanking, intrari[3]);  // eliminat

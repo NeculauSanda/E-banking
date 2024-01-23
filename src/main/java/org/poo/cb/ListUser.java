@@ -13,11 +13,11 @@ public class ListUser implements Comanda{
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.println("\n email  " + intrari[2]);
-            Friend friend = new Friend();
-            User user = friend.returnareUser(eBanking, intrari[2]);
+            ActionUser actionUser = new ActionUser();
+            User user = actionUser.returnareUser(eBanking, intrari[2]);
             List<User> prieteni = user.getPrieteni();
             System.out.print("{\"email\":\"" + intrari[2] + "\",\"firstname\":\"" + user.getPrenume() + "\",\"lastname\":\"" + user.getNume() +
-                    "\",\"address\":\" " + user.getAdresa() + "\",\"friends\":[");
+                    "\",\"address\":\"" + user.getAdresa() + "\",\"friends\":[");
             int first = 0;
             for (User prieten : prieteni) {
                 if(first == 0) {

@@ -2,7 +2,7 @@ package org.poo.cb;
 
 import java.util.Map;
 
-public class Friend implements Friends{
+public class ActionUser implements Actions {
 
     @Override
     public User returnareUser(EBanking eBanking, String email) {
@@ -13,5 +13,14 @@ public class Friend implements Friends{
             }
         }
         throw new UserException("User with " + email + " doesn’t exist") ;
+    }
+
+    public Account returnareCont(Map<String, Account> conturi, String tipCont) {
+        for (Map.Entry<String, Account> cont : conturi.entrySet()) {
+            if(cont.getKey().equals(tipCont)) {
+                return cont.getValue();
+            }
+        }
+        return null;
     }
 }

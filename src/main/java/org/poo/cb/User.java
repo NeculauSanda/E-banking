@@ -1,8 +1,8 @@
 package org.poo.cb;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import org.poo.cb.Stocks.Stocks;
+
+import java.util.*;
 
 public class User {
     private final String email;
@@ -11,12 +11,17 @@ public class User {
     private final String adresa;
     private List<User> prieteni;
 
+    private Map<String, Account> conturi;
+
+    private Map<String, Stocks> stocks;
+
     private User(UserBuilder userBuilder) {
         this.email = userBuilder.email;
         this.nume = userBuilder.nume;
         this.prenume = userBuilder.prenume;
         this.adresa = userBuilder.adresa;
         this.prieteni = userBuilder.prieteni;
+        this.conturi = userBuilder.conturi;
     }
 
     public String getEmail() {
@@ -42,6 +47,21 @@ public class User {
         return prieteni;
     }
 
+    public Map<String, Account> getConturi() {
+        if(conturi == null) {
+            // pentru a ramane conturile in ordinea in care s-au creat
+            conturi = new LinkedHashMap<String, Account>();
+        }
+        return conturi;
+    }
+
+    public Map<String, Stocks> getStocks() {
+        if(stocks == null) {
+            stocks = new LinkedHashMap<String, Stocks>();
+        }
+        return stocks;
+    }
+
     // de sters
     @Override
     public String toString() {
@@ -55,6 +75,10 @@ public class User {
         private final String prenume; // obligatoriu
         private String adresa;
         private List<User> prieteni;
+
+        private Map<String, Account> conturi;
+
+        private Map<String, Stocks> stocks;
 
         public UserBuilder(String email, String prenume, String nume) {
             this.email = email;
@@ -70,6 +94,16 @@ public class User {
         public UserBuilder prieteni(List<User> prieteni) {
             this.prieteni = prieteni;
             return this;
+        }
+
+        public Map<String, Account> conturi(Map<String, Account> conturi) {
+            this.conturi = conturi;
+            return conturi;
+        }
+
+        public Map<String, Stocks> stock(Map<String, Stocks> stocks) {
+            this.stocks = stocks;
+            return stocks;
         }
 
         public User build(EBanking eBanking) {
@@ -97,8 +131,8 @@ public class User {
     public void adaugaPrieteni(EBanking eBanking,String emailPri) {
         // daca exista prietenul in baza de date il adugam
         if (validareUser(eBanking, emailPri)) {
-            Friend friend = new Friend();
-            User prieten = friend.returnareUser(eBanking,emailPri);
+            ActionUser actionUser = new ActionUser();
+            User prieten = actionUser.returnareUser(eBanking,emailPri);
             //daca prietenul nu se afla in lista userului il adugam
             if(!prieteni.contains(prieten)) {
                 //daca lista de prietei ii nula o initializam
@@ -115,10 +149,17 @@ public class User {
             throw new UserException("User with " + emailPri + " doesn’t exist");
         }
     }
-}
 
-class UserException extends RuntimeException {
-    public UserException(String message) {
-        super(message);
+    public void adaugaCont(EBanking eBanking, Account account) {
+        if(validareUser(eBanking,this.email)) {
+            if(conturi == null) {
+                getConturi();
+            }
+            if(!conturi.containsKey(account.getName())) {
+                conturi.put(account.getName(), account);
+            } else {
+                throw  new UserException("Account in currency " + account.getClass().getName() + " already exists for user");
+            }
+        }
     }
 }
