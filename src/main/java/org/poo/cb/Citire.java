@@ -13,13 +13,16 @@ public class Citire {
             String splitBy = " ";
             while ((line = br.readLine()) != null) {
 
-                String[] intrari = line.split(splitBy);
-                String comanda = intrari[0] + " " + intrari[1];
+
 
                 // de sters de scris in fisier
                 try (FileWriter fw = new FileWriter("src/main/java/output.out", true);
                      BufferedWriter bw = new BufferedWriter(fw);
                      PrintWriter out = new PrintWriter(bw)) {
+
+                    String[] intrari = line.split(splitBy);
+                    out.println("!!!!!!!!!!!!!!!!!!!!!!! " + intrari[1]);
+                    String comanda = intrari[0] + " " + intrari[1];
 
                     out.println(line);
                     out.println("\n" + comanda + "\n");
@@ -29,7 +32,7 @@ public class Citire {
                     // am facu tfactory pentru comenzi
                     ComandaFactory ComandaFactory = new ComandaFactory();
                     Comanda comanda1 = ComandaFactory.getComanda(comanda);
-                    comanda1.execute(eBanking, intrari);
+                    comanda1.execute(eBanking, intrari, args);
 
                 } catch (IOException b) {
                     b.getMessage();
@@ -39,26 +42,6 @@ public class Citire {
             e.getMessage();
         }
 
-//        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/" + args[3]))) {
-//            String line;
-//            String splitBy = " ";
-//            while ((line = br.readLine()) != null) {
-//                String[] intrari = line.split(splitBy);
-//                String comanda = intrari[0] + " " + intrari[1];
-//
-//                // de sters de scris in fisier
-//                try (FileWriter fw = new FileWriter("src/main/java/" + "output1.out", true);
-//                     BufferedWriter bw = new BufferedWriter(fw);
-//                     PrintWriter out = new PrintWriter(bw)) {
-//
-//
-//                } catch (IOException b) {
-//                    b.getMessage();
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.getMessage();
-//        }
 //            try {
 //                PrintWriter writer = new PrintWriter("src/main/java/" + "output.out");
 //                writer.close();
@@ -87,6 +70,29 @@ public class Citire {
                     }
                     exchange.put(intrariSec[0],lista);
                 }
+            }
+        } catch (IOException e) {
+            e.getMessage();
+        }
+
+        return exchange;
+    }
+
+    public Map<String, List<String>> citimStocks (String args) {
+
+        Map<String, List<String>> exchange = new LinkedHashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/" + args))) {
+            String line;
+            String splitBy = ",";
+            while ((line = br.readLine()) != null) {
+                String[] intrariSec = line.split(splitBy);
+
+                List<String> lista = new ArrayList<>();
+                for (int i = 1; i < intrariSec.length; i++) {
+                    lista.add(intrariSec[i]);
+                }
+                exchange.put(intrariSec[0],lista);
             }
         } catch (IOException e) {
             e.getMessage();

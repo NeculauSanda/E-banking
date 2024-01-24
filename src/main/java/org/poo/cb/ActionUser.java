@@ -1,5 +1,6 @@
 package org.poo.cb;
 
+import java.util.List;
 import java.util.Map;
 
 public class ActionUser implements Actions {
@@ -22,5 +23,15 @@ public class ActionUser implements Actions {
             }
         }
         return null;
+    }
+
+    @Override
+    public void verificarePrieten(User user, String emailPrieten) {
+        List <User> prieteni = user.getPrieteni();
+        for(User prieten : prieteni) {
+            if(!prieten.getEmail().equals(emailPrieten)) {
+                throw new UserException("You are not allowed to transfer money to " + emailPrieten);
+            }
+        }
     }
 }

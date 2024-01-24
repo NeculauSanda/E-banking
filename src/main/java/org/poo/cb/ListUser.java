@@ -8,11 +8,8 @@ import java.util.List;
 
 public class ListUser implements Comanda{
     @Override
-    public void execute(EBanking eBanking, String[] intrari) {
-        try (FileWriter fw = new FileWriter("src/main/java/" + "output.out", true);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter out = new PrintWriter(bw)) {
-            out.println("\n email  " + intrari[2]);
+    public void execute(EBanking eBanking, String[] intrari, String[] args) {
+
             ActionUser actionUser = new ActionUser();
             User user = actionUser.returnareUser(eBanking, intrari[2]);
             List<User> prieteni = user.getPrieteni();
@@ -28,8 +25,5 @@ public class ListUser implements Comanda{
                 }
             }
             System.out.println("]}");
-        } catch (IOException e) {
-            e.getMessage();
-        }
     }
 }

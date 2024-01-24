@@ -19,16 +19,10 @@ public class CreateUser implements Comanda{
         return adresa;
     }
     @Override
-    public void execute(EBanking eBanking, String[] intrari) {
-        try (FileWriter fw = new FileWriter("src/main/java/" + "output.out", true);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter out = new PrintWriter(bw)) {
+    public void execute(EBanking eBanking, String[] intrari, String[] args) {
 
-
-            String prenume = intrari[3]; // de sters
-            String nume = intrari[4]; // de sters
             String adresa = adresaConcat(intrari); // ramane
-            out.println("\n user  " + intrari[3] + " " + intrari[4] + " " + adresa); // de sters
+
             try {
                 // am utilizat builder design pentru utilizator
                 User user = new User.UserBuilder(intrari[2], intrari[3], intrari[4])
@@ -38,15 +32,9 @@ public class CreateUser implements Comanda{
                 // se aduga utilizatorul in baza de date deoarece este bun
                 eBanking.adaugaUser(user);
 
-                out.println("\n user -->  " + user.toString() + "\n");
-                out.println("\n ebanking -->  " + eBanking.toString() + "\n");
-                out.println(eBanking.getUtilizatori().size());
+
             } catch (UserException e) {
                 System.out.println(e.getMessage());
-                out.println("-----> " + e.getMessage() + "\n");
             }
-        } catch (IOException b) {
-            b.getMessage();
-        }
     }
 }

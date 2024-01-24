@@ -3,7 +3,6 @@ package org.poo.cb.typeAccount;
 import org.poo.cb.Account;
 import org.poo.cb.UserException;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +22,10 @@ public class CAD implements Account {
     @Override
     public void adaugaBani(Double suma) {
         depozit = depozit + suma;
+    }
+
+    public void retragereBani(Double suma) {
+        depozit = depozit - suma;
     }
 
     @Override
@@ -64,6 +67,12 @@ public class CAD implements Account {
             depozit = depozit - sumaExchange;
         } else {
             throw new UserException("Insufficient amount in account " + getName() + " for exchange");
+        }
+    }
+
+    public void verificaBani(Double suma) {
+        if(depozit - suma < 0) {
+            throw new UserException("Insufficient amount in account " + getName() + " for transfer");
         }
     }
 }
