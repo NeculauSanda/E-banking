@@ -1,11 +1,11 @@
-package org.poo.cb;
+package org.poo.cb.Command;
 
-import java.io.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import org.poo.cb.*;
+import org.poo.cb.typeAccount.Account;
+
 import java.util.*;
 
-public class ExchangeMoney implements Comanda{
+public class ExchangeMoney implements Comanda {
     public void execute(EBanking eBanking, String[] intrari, String[] args) {
 
             Citire citim = new Citire();

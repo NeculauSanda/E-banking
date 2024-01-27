@@ -27,14 +27,6 @@ public class EBanking {
         return utilizatori;
     }
 
-    // trebuie sters
-    @Override
-    public String toString() {
-        return "EBanking{" +
-                "utilizatori=" + utilizatori +
-                '}';
-    }
-
     // dupa fiecare test curatam baza de date cu utilizatori
     public void curataMap(){
         utilizatori.clear();

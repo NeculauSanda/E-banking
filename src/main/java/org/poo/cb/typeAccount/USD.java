@@ -1,6 +1,5 @@
 package org.poo.cb.typeAccount;
 
-import org.poo.cb.Account;
 import org.poo.cb.UserException;
 
 import java.util.List;
@@ -65,7 +64,7 @@ public class USD implements Account {
         }
         // scadem din contul nostru banii pe care i-am schimbat
         if(depozit - sumaExchange >= 0) {
-            depozit = depozit - sumaExchange;
+            retragereBani(sumaExchange);
         } else {
             throw new UserException("Insufficient amount in account " + getName() + " for exchange");
         }

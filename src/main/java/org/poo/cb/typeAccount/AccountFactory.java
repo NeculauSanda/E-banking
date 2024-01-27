@@ -1,4 +1,4 @@
-package org.poo.cb;
+package org.poo.cb.typeAccount;
 
 import org.poo.cb.typeAccount.*;
 

@@ -1,12 +1,10 @@
-package org.poo.cb;
+package org.poo.cb.Command;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Map;
+import org.poo.cb.*;
+import org.poo.cb.typeAccount.Account;
+import org.poo.cb.typeAccount.AccountFactory;
 
-public class AddAccount implements Comanda{
+public class AddAccount implements Comanda {
     public void execute(EBanking eBanking, String[] intrari, String[] args) {
         ActionUser actionUser = new ActionUser();
         User user = actionUser.returnareUser(eBanking,intrari[2]);

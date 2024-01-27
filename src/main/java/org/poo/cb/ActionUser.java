@@ -1,5 +1,7 @@
 package org.poo.cb;
 
+import org.poo.cb.typeAccount.Account;
+
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +15,7 @@ public class ActionUser implements Actions {
                 return utilizator.getValue();
             }
         }
-        throw new UserException("User with " + email + " doesn’t exist") ;
+        throw new UserException("User with email " + email + " doesn't exist") ;
     }
 
     public Account returnareCont(Map<String, Account> conturi, String tipCont) {

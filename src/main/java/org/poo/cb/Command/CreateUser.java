@@ -1,11 +1,10 @@
-package org.poo.cb;
+package org.poo.cb.Command;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import org.poo.cb.EBanking;
+import org.poo.cb.User;
+import org.poo.cb.UserException;
 
-public class CreateUser implements Comanda{
+public class CreateUser implements Comanda {
 
     public String adresaConcat(String[] input) {
         String adresa = "";
@@ -31,7 +30,6 @@ public class CreateUser implements Comanda{
 
                 // se aduga utilizatorul in baza de date deoarece este bun
                 eBanking.adaugaUser(user);
-
 
             } catch (UserException e) {
                 System.out.println(e.getMessage());

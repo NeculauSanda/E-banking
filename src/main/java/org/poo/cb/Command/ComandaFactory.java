@@ -1,4 +1,6 @@
-package org.poo.cb;
+package org.poo.cb.Command;
+
+import org.poo.cb.Command.*;
 
 public class ComandaFactory {
     public Comanda getComanda(String comanda) {

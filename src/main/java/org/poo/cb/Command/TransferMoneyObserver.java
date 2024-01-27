@@ -1,4 +1,10 @@
-package org.poo.cb;
+package org.poo.cb.Command;
+
+import org.poo.cb.ActionUser;
+import org.poo.cb.Command.TransferMoney;
+import org.poo.cb.User;
+import org.poo.cb.UserException;
+import org.poo.cb.typeAccount.Account;
 
 public class TransferMoneyObserver {
     TransferMoney transferMoney;

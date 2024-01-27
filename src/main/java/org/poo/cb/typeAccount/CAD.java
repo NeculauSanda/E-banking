@@ -1,6 +1,5 @@
 package org.poo.cb.typeAccount;
 
-import org.poo.cb.Account;
 import org.poo.cb.UserException;
 
 import java.util.List;
@@ -36,6 +35,7 @@ public class CAD implements Account {
                 List<Double> listaExchange = exchange.getValue();
                 if(getName().equals("EUR")) {
                     sumaExchange = sumaExchange + (suma * listaExchange.get(0));
+                    //comision
                     if(sumaExchange > depozit/2) {
                         sumaExchange = sumaExchange + ((0.01 * suma) * listaExchange.get(0));
                     }
@@ -64,7 +64,7 @@ public class CAD implements Account {
         }
         // scadem din contul nostru banii pe care i-am schimbat
         if(depozit - sumaExchange >= 0) {
-            depozit = depozit - sumaExchange;
+            retragereBani(sumaExchange);
         } else {
             throw new UserException("Insufficient amount in account " + getName() + " for exchange");
         }

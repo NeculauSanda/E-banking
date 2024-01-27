@@ -1,7 +1,5 @@
 package org.poo.cb;
 
-import java.io.*;
-
 public class Main {
     public static void main(String[] args) {
         if (args == null) {
@@ -9,11 +7,10 @@ public class Main {
         } else {
             Citire citire = new Citire();
             EBanking eBanking = EBanking.geteBanking();
-            citire.citim(args, eBanking);
+            citire.citire(args, eBanking);
 
             // curata baza de date a utilizatorilor
             eBanking.curataMap();
-//            System.out.println(args[2]);
         }
     }
 }

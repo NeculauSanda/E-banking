@@ -1,6 +1,7 @@
 package org.poo.cb;
 
 import org.poo.cb.Stocks.Stocks;
+import org.poo.cb.typeAccount.Account;
 
 import java.util.*;
 
@@ -62,13 +63,8 @@ public class User {
         return stocks;
     }
 
-    // de sters
-    @Override
-    public String toString() {
-        return email + " " + prenume + " " + nume + " " + adresa + " ";
-    }
 
-    // buider User
+    // Buider User
     public static class UserBuilder {
         private final String email;  // obligatoriu
         private final String nume;  // obligatoriu
@@ -131,8 +127,7 @@ public class User {
     public void adaugaPrieteni(EBanking eBanking,String emailPri) {
         // daca exista prietenul in baza de date il adugam
         if (validareUser(eBanking, emailPri)) {
-            ActionUser actionUser = new ActionUser();
-            User prieten = actionUser.returnareUser(eBanking,emailPri);
+            User prieten = new ActionUser().returnareUser(eBanking,emailPri);
             //daca prietenul nu se afla in lista userului il adugam
             if(!prieteni.contains(prieten)) {
                 //daca lista de prietei ii nula o initializam

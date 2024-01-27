@@ -1,9 +1,6 @@
-package org.poo.cb;
+package org.poo.cb.Command;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import org.poo.cb.*;
 
 public class AddFriend implements Comanda {
     @Override
@@ -12,7 +9,6 @@ public class AddFriend implements Comanda {
         try {
             User userPrincipal = prieten.returnareUser(eBanking, intrari[2]);
             userPrincipal.adaugaPrieteni(eBanking, intrari[3]);
-
         } catch (UserException e) {
             System.out.println(e.getMessage());
         }
