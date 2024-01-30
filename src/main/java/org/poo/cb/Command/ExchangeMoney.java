@@ -20,8 +20,6 @@ public class ExchangeMoney implements Comanda {
                 contExtragere.exchange(Double.parseDouble(intrari[5]), exchange, intrari[4]);
                 Account contDepunere = actiuni.returnareCont(user.getConturi(), intrari[4]);
                 contDepunere.adaugaBani(Double.parseDouble(intrari[5]));
-
-
             } catch (UserException e) {
                 System.out.println(e.getMessage());
             }

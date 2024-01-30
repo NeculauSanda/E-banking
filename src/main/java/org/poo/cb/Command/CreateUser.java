@@ -20,7 +20,7 @@ public class CreateUser implements Comanda {
     @Override
     public void execute(EBanking eBanking, String[] intrari, String[] args) {
 
-            String adresa = adresaConcat(intrari); // ramane
+            String adresa = adresaConcat(intrari);
 
             try {
                 // am utilizat builder design pentru utilizator
@@ -28,7 +28,7 @@ public class CreateUser implements Comanda {
                         .adresa(adresa)
                         .build(eBanking);
 
-                // se aduga utilizatorul in baza de date deoarece este bun
+                // se aduga utilizatorul in baza de date, deoarece este bun
                 eBanking.adaugaUser(user);
 
             } catch (UserException e) {

@@ -1,7 +1,7 @@
 package org.poo.cb.Stocks;
 
 public class StockPrincipal implements Stocks{
-    private String nume;
+    private final String nume;
 
     private int stock;
 

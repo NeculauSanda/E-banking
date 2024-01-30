@@ -30,9 +30,7 @@ public class BuyStocks implements Comanda {
         StockBuy buy = new StockBuy(stock);
 
         try {
-
             buy.execute();
-
         } catch (UserException e) {
             System.out.println(e.getMessage());
         }

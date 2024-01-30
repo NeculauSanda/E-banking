@@ -5,6 +5,7 @@ public class Main {
         if (args == null) {
             System.out.println("Running Main");
         } else {
+
             Citire citire = new Citire();
             EBanking eBanking = EBanking.geteBanking();
             citire.citire(args, eBanking);

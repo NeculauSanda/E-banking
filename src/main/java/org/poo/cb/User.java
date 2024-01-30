@@ -130,7 +130,7 @@ public class User {
             User prieten = new ActionUser().returnareUser(eBanking,emailPri);
             //daca prietenul nu se afla in lista userului il adugam
             if(!prieteni.contains(prieten)) {
-                //daca lista de prietei ii nula o initializam
+                //daca lista de prieteni ii nula o initializam
                 if (prieteni == null || prieten.prieteni == null) {
                     getPrieteni();
                     prieten.getPrieteni();
